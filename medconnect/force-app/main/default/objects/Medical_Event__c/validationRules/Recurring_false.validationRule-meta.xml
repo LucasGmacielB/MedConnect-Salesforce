@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recurring_false</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    Recurring__c = FALSE,
+    NOT(ISBLANK(TEXT(Frequency__c)))
+)</errorConditionFormula>
+    <errorMessage>A frequência deve estar vazia quando a opção Recorrente não estiver selecionada.</errorMessage>
+</ValidationRule>

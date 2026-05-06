@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Attendee_Rule</fullName>
+    <active>true</active>
+    <description>Só pode associar attendee se:
+
+evento ainda não acabou
+evento está ativo (Live = true)
+ainda tem vagas</description>
+    <errorConditionFormula>OR(
+    Medical_Event__r.End_Date_Time__c &lt; NOW(),
+    Medical_Event__r.Live__c = FALSE,
+    Medical_Event__r.Remaining_Seats__c = 0
+)</errorConditionFormula>
+    <errorMessage>Não foi possível cadastrar o participante. O evento não é válido (expirado, inativo ou lotado).</errorMessage>
+</ValidationRule>

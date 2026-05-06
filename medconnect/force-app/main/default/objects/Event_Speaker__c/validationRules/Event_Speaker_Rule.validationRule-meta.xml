@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Speaker_Rule</fullName>
+    <active>true</active>
+    <description>Só pode associar speaker se:
+
+evento ainda não acabou
+evento está ativo</description>
+    <errorConditionFormula>OR(
+    Medical_Event__r.End_Date_Time__c &lt; NOW(),
+    Medical_Event__r.Live__c = FALSE
+)</errorConditionFormula>
+    <errorMessage>Não foi possível atribuir um palestrante. O evento não está ativo ou já terminou.</errorMessage>
+</ValidationRule>
