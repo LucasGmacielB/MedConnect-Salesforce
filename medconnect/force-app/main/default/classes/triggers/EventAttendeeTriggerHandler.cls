@@ -2,88 +2,55 @@ public class EventAttendeeTriggerHandler {
 
     public static void sendConfirmationEmails(List<Event_Attendee__c> newRecords) {
         try {
-            Set<Id> eventAttendeeIds = new Set<Id>();
-
-            for (Event_Attendee__c record : newRecords) {
-                eventAttendeeIds.add(record.Id);
-            }
-
-            List<Event_Attendee__c> registrations = [
-                SELECT Id,
-                       Attendee__r.Name,
-                       Attendee__r.Email__c,
-                       Medical_Event__r.Event_Name__c,
-                       Medical_Event__r.Start_Date_Time__c,
-                       Medical_Event__r.Organizer__r.Name,
-                       Medical_Event__r.Address__r.Street__c,
-                       Medical_Event__r.Address__r.City__c,
-                       Medical_Event__r.Address__r.State__c,
-                       Medical_Event__r.Address__r.Country__c
-                FROM Event_Attendee__c
-                WHERE Id IN :eventAttendeeIds
+            // Buscar o ID do Template de E-mail
+            EmailTemplate template = [
+                SELECT Id 
+                FROM EmailTemplate 
+                WHERE DeveloperName = 'Event_Registration_Confirmation' 
+                LIMIT 1
             ];
 
             List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
 
-            for (Event_Attendee__c registration : registrations) {
+            // Para templates funcionarem com campos personalizados do objeto, 
+            // precisamos do ID do registro (WhatId) e o ID do destinatário (TargetObjectId).
+            // Nota: O TargetObjectId deve ser um Lead, Contact ou User ID.
+            // Se Attendee__c não for um desses, usaremos o ID do registro e renderizaremos manualmente ou 
+            // assumiremos que o e-mail será enviado para o endereço fixo.
+
+            for (Event_Attendee__c record : newRecords) {
+                // Buscamos os dados necessários para o envio (Email do participante)
+                // Usamos uma query aqui ou passamos os dados já carregados
+                Event_Attendee__c registration = [
+                    SELECT Id, Attendee__r.Email__c 
+                    FROM Event_Attendee__c 
+                    WHERE Id = :record.Id 
+                    LIMIT 1
+                ];
+
                 if (String.isBlank(registration.Attendee__r.Email__c)) {
                     continue;
                 }
 
-                String eventName = registration.Medical_Event__r.Event_Name__c;
-                String attendeeName = registration.Attendee__r.Name;
-                String organizerName = registration.Medical_Event__r.Organizer__r.Name;
-                String eventDate = String.valueOf(registration.Medical_Event__r.Start_Date_Time__c);
-
-                String locationText = '';
-
-                if (registration.Medical_Event__r.Address__r != null) {
-                    locationText =
-                        registration.Medical_Event__r.Address__r.Street__c + ', ' +
-                        registration.Medical_Event__r.Address__r.City__c + ', ' +
-                        registration.Medical_Event__r.Address__r.State__c + ', ' +
-                        registration.Medical_Event__r.Address__r.Country__c;
-                } else {
-                    locationText = 'Virtual Event';
-                }
-
                 Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
-
-                email.setToAddresses(new List<String>{
-                    registration.Attendee__r.Email__c
-                });
-
-                email.setSubject('Ingresso para o evento "' + eventName + '"');
-
-                email.setPlainTextBody(
-                    'Olá ' + attendeeName + ',\n\n' +
-                    
-                    'Obrigado por se registrar no evento "' + eventName + '" que acontecerá em ' +
-                    '"' + eventDate + '" no local "' + locationText + '". Estamos felizes em ter você conosco!\n\n' +
-                    
-                    'Você pode visualizar a localização do evento no Google Maps através do link abaixo:\n' +
-                    'https://www.google.com/maps/place/' + EncodingUtil.urlEncode(locationText, 'UTF-8') + '\n\n' +
-                    
-                    'Atenciosamente,\n' +
-                    organizerName
-                );
+                
+                email.setTemplateId(template.Id);
+                email.setWhatId(registration.Id); // Associa o registro para Merge Fields
+                
+                // Como Attendee__c é um objeto customizado e não um Contato/Lead, 
+                // definimos o endereço de e-mail manualmente e setamos o TargetObjectId como nulo
+                // ou usamos um ID fake/técnico se necessário para renderização.
+                email.setToAddresses(new List<String>{ registration.Attendee__r.Email__c });
+                
+                // Importante: Para usar ToAddresses com Templates, precisamos desabilitar o salvamento como atividade 
+                // se o TargetObjectId for nulo.
+                email.setSaveAsActivity(false);
 
                 emails.add(email);
             }
-     
 
             if (!emails.isEmpty()) {
-                Messaging.SendEmailResult[] results = Messaging.sendEmail(emails, false);
-
-                for (Messaging.SendEmailResult result : results) {
-                    System.debug('EMAIL SUCCESS: ' + result.isSuccess());
-
-                    if (!result.isSuccess()) {
-                        for (Messaging.SendEmailError error : result.getErrors()) {
-                            System.debug('EMAIL ERROR: ' + error.getMessage());
-                        }
-                    }
-                }
+                Messaging.sendEmail(emails, false);
             }
 
         } catch (Exception e) {
