@@ -1,1 +1,0 @@
-Database.executeBatch(new MedicalEventPurgeBatch(), 200);

@@ -14,4 +14,18 @@
         <shortDescription>General error message for API failures</shortDescription>
         <value>Ocorreu um erro interno no processamento da solicitação.</value>
     </labels>
+    <labels>
+        <fullName>Smarty_Auth_Id</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Smarty auth ID used by the US Street Address API integration</shortDescription>
+        <value>CHANGE_ME</value>
+    </labels>
+    <labels>
+        <fullName>Smarty_Auth_Token</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Smarty auth token used by the US Street Address API integration</shortDescription>
+        <value>CHANGE_ME</value>
+    </labels>
 </CustomLabels>
