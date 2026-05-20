@@ -1,7 +1,7 @@
-public with sharing class SmartyAddressVerificationQueueable implements Queueable, Database.AllowsCallouts {
+public with sharing class ViaCepAddressVerificationQueueable implements Queueable, Database.AllowsCallouts {
     private final Set<Id> locationIds;
 
-    public SmartyAddressVerificationQueueable(Set<Id> locationIds) {
+    public ViaCepAddressVerificationQueueable(Set<Id> locationIds) {
         this.locationIds = locationIds == null ? new Set<Id>() : new Set<Id>(locationIds);
     }
 
@@ -18,12 +18,12 @@ public with sharing class SmartyAddressVerificationQueueable implements Queueabl
             WITH USER_MODE
         ]) {
             try {
-                Boolean verified = SmartyAddressVerificationService.verify(location);
+                Boolean verified = ViaCepAddressVerificationService.verify(location);
                 if (location.Verified__c != verified) {
                     locationsToUpdate.add(new Location__c(Id = location.Id, Verified__c = verified));
                 }
             } catch (Exception e) {
-                ErrorLogService.logError(System.now(), e.getMessage(), 'SmartyAddressVerificationQueueable');
+                ErrorLogService.logError(System.now(), e.getMessage(), 'ViaCepAddressVerificationQueueable');
             }
         }
 

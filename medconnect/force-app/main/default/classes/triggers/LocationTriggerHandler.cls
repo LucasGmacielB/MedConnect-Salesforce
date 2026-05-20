@@ -10,7 +10,7 @@ public with sharing class LocationTriggerHandler {
         }
 
         if (!locationIds.isEmpty()) {
-            System.enqueueJob(new SmartyAddressVerificationQueueable(locationIds));
+            System.enqueueJob(new ViaCepAddressVerificationQueueable(locationIds));
         }
     }
 
