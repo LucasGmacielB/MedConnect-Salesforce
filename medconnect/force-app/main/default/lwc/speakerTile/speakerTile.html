@@ -1,0 +1,40 @@
+<template>
+  <lightning-card title="Speaker">
+    <template if:true={speaker}>
+      <article class="speaker">
+        <div class="photo">
+          <template if:true={profileUrl}>
+            <img src={profileUrl} alt={name} />
+          </template>
+
+          <template if:false={profileUrl}>
+            <lightning-icon
+              icon-name="standard:avatar"
+              size="large"
+              alternative-text="Speaker"
+            ></lightning-icon>
+          </template>
+        </div>
+
+        <div class="content">
+          <h2>{name}</h2>
+          <template if:true={specialization}>
+            <p class="specialization">{specialization}</p>
+          </template>
+
+          <template if:true={aboutMe}>
+            <lightning-formatted-rich-text
+              value={aboutMe}
+            ></lightning-formatted-rich-text>
+          </template>
+        </div>
+      </article>
+    </template>
+
+    <template if:false={speaker}>
+      <div class="slds-p-around_medium slds-text-color_weak">
+        No speaker selected.
+      </div>
+    </template>
+  </lightning-card>
+</template>

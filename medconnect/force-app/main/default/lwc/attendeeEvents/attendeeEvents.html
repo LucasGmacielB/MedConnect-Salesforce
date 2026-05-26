@@ -1,0 +1,54 @@
+<template>
+  <lightning-card title="Attendee Events">
+    <template if:true={loading}>
+      <lightning-spinner
+        alternative-text="Loading attendee events"
+      ></lightning-spinner>
+    </template>
+
+    <template if:false={loading}>
+      <lightning-accordion
+        allow-multiple-sections-open
+        active-section-name={activeSections}
+      >
+        <lightning-accordion-section name="upcoming" label={upcomingLabel}>
+          <template if:true={hasUpcomingEvents}>
+            <lightning-datatable
+              key-field="eventId"
+              data={upcomingEvents}
+              columns={columns}
+              hide-checkbox-column
+              onrowaction={handleRowAction}
+            >
+            </lightning-datatable>
+          </template>
+
+          <template if:false={hasUpcomingEvents}>
+            <div class="slds-p-around_medium slds-text-color_weak">
+              No upcoming events.
+            </div>
+          </template>
+        </lightning-accordion-section>
+
+        <lightning-accordion-section name="past" label={pastLabel}>
+          <template if:true={hasPastEvents}>
+            <lightning-datatable
+              key-field="eventId"
+              data={pastEvents}
+              columns={columns}
+              hide-checkbox-column
+              onrowaction={handleRowAction}
+            >
+            </lightning-datatable>
+          </template>
+
+          <template if:false={hasPastEvents}>
+            <div class="slds-p-around_medium slds-text-color_weak">
+              No past events.
+            </div>
+          </template>
+        </lightning-accordion-section>
+      </lightning-accordion>
+    </template>
+  </lightning-card>
+</template>

@@ -1,0 +1,52 @@
+<template>
+  <lightning-card title="Upcoming Medical Events">
+    <div class="filters slds-p-horizontal_medium slds-p-top_small">
+      <lightning-input
+        type="search"
+        label="Event name"
+        value={searchTerm}
+        onchange={handleSearchChange}
+      >
+      </lightning-input>
+
+      <lightning-input
+        type="date"
+        label="Start date"
+        value={startDate}
+        onchange={handleStartDateChange}
+      >
+      </lightning-input>
+
+      <lightning-input
+        type="search"
+        label="Location"
+        value={locationTerm}
+        onchange={handleLocationChange}
+      >
+      </lightning-input>
+    </div>
+
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading events"></lightning-spinner>
+    </template>
+
+    <template if:false={loading}>
+      <template if:true={hasEvents}>
+        <lightning-datatable
+          key-field="eventId"
+          data={events}
+          columns={columns}
+          hide-checkbox-column
+          onrowaction={handleRowAction}
+        >
+        </lightning-datatable>
+      </template>
+
+      <template if:false={hasEvents}>
+        <div class="slds-p-around_medium slds-text-color_weak">
+          No upcoming events found.
+        </div>
+      </template>
+    </template>
+  </lightning-card>
+</template>

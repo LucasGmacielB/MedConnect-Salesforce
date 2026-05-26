@@ -1,99 +1,86 @@
 <template>
+  <lightning-card title="Medical Event Details">
+    <div slot="actions" class="actions">
+      <lightning-button label="New Speaker" onclick={handleNewSpeaker}>
+      </lightning-button>
 
-    <lightning-card title="Medical Event Details">
+      <lightning-button label="New Attendee" onclick={handleNewAttendee}>
+      </lightning-button>
+    </div>
 
-        <template if:true={loading}>
+    <template if:true={loading}>
+      <lightning-spinner alternative-text="Loading"> </lightning-spinner>
+    </template>
 
-            <lightning-spinner
-                alternative-text="Loading">
-            </lightning-spinner>
+    <template if:false={loading}>
+      <lightning-tabset>
+        <!-- EVENT DETAILS -->
 
-        </template>
+        <lightning-tab label="Event Details">
+          <lightning-record-form
+            record-id={recordId}
+            object-api-name="Medical_Event__c"
+            layout-type="Full"
+            mode="readonly"
+          >
+          </lightning-record-form>
+        </lightning-tab>
 
-        <template if:false={loading}>
+        <!-- SPEAKERS -->
 
-            <lightning-tabset>
+        <lightning-tab label="Speakers">
+          <lightning-datatable
+            key-field="Id"
+            data={speakers}
+            columns={speakerColumns}
+          >
+          </lightning-datatable>
+        </lightning-tab>
 
-                <!-- EVENT DETAILS -->
+        <!-- LOCATION -->
 
-                <lightning-tab label="Event Details">
+        <lightning-tab label="Location Details">
+          <template if:true={location}>
+            <div class="slds-p-around_medium">
+              <p>
+                <strong>Street:</strong>
+                {location.Street__c}
+              </p>
 
-                    <lightning-record-form
-                        record-id={recordId}
-                        object-api-name="Medical_Event__c"
-                        layout-type="Full"
-                        mode="readonly">
-                    </lightning-record-form>
+              <p>
+                <strong>City:</strong>
+                {location.City__c}
+              </p>
 
-                </lightning-tab>
+              <p>
+                <strong>State:</strong>
+                {location.State__c}
+              </p>
 
-                <!-- SPEAKERS -->
+              <p>
+                <strong>Postal Code:</strong>
+                {location.Postal_Code__c}
+              </p>
 
-                <lightning-tab label="Speakers">
+              <p>
+                <strong>Country:</strong>
+                {location.Country__c}
+              </p>
+            </div>
+          </template>
+        </lightning-tab>
 
-                    <lightning-datatable
-                        key-field="Id"
-                        data={speakers}
-                        columns={speakerColumns}>
-                    </lightning-datatable>
+        <!-- ATTENDEES -->
 
-                </lightning-tab>
-
-                <!-- LOCATION -->
-
-                <lightning-tab label="Location Details">
-
-                    <template if:true={location}>
-
-                        <div class="slds-p-around_medium">
-
-                            <p>
-                                <strong>Street:</strong>
-                                {location.Street__c}
-                            </p>
-
-                            <p>
-                                <strong>City:</strong>
-                                {location.City__c}
-                            </p>
-
-                            <p>
-                                <strong>State:</strong>
-                                {location.State__c}
-                            </p>
-
-                            <p>
-                                <strong>Postal Code:</strong>
-                                {location.Postal_Code__c}
-                            </p>
-
-                            <p>
-                                <strong>Country:</strong>
-                                {location.Country__c}
-                            </p>
-
-                        </div>
-
-                    </template>
-
-                </lightning-tab>
-
-                <!-- ATTENDEES -->
-
-                <lightning-tab label="Attendees">
-
-                    <lightning-datatable
-                        key-field="Id"
-                        data={attendees}
-                        columns={attendeeColumns}>
-                    </lightning-datatable>
-
-                </lightning-tab>
-
-            </lightning-tabset>
-
-        </template>
-
-    </lightning-card>
-
+        <lightning-tab label="Attendees">
+          <lightning-datatable
+            key-field="Id"
+            data={attendees}
+            columns={attendeeColumns}
+          >
+          </lightning-datatable>
+        </lightning-tab>
+      </lightning-tabset>
+    </template>
+  </lightning-card>
 </template>
