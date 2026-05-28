@@ -40,34 +40,52 @@
         <!-- LOCATION -->
 
         <lightning-tab label="Location Details">
-          <template if:true={location}>
-            <div class="slds-p-around_medium">
-              <p>
-                <strong>Street:</strong>
-                {location.Street__c}
-              </p>
+            <template if:true={location}>
 
-              <p>
-                <strong>City:</strong>
-                {location.City__c}
-              </p>
+                <div class="slds-p-around_medium slds-box slds-theme_default">
 
-              <p>
-                <strong>State:</strong>
-                {location.State__c}
-              </p>
+                    <div class="slds-grid slds-wrap slds-gutters">
 
-              <p>
-                <strong>Postal Code:</strong>
-                {location.Postal_Code__c}
-              </p>
+                        <div class="slds-col slds-size_1-of-2">
+                            <strong>Street: </strong>
+                            <lightning-formatted-text
+                                value={location.Street__c}>
+                            </lightning-formatted-text>
+                        </div>
 
-              <p>
-                <strong>Country:</strong>
-                {location.Country__c}
-              </p>
-            </div>
-          </template>
+                        <div class="slds-col slds-size_1-of-2">
+                            <strong>City: </strong>
+                            <lightning-formatted-text
+                                value={location.City__c}>
+                            </lightning-formatted-text>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-m-top_small">
+                            <strong>State: </strong>
+                            <lightning-formatted-text
+                                value={location.State__c}>
+                            </lightning-formatted-text>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-2 slds-m-top_small">
+                            <strong>Postal Code: </strong>
+                            <lightning-formatted-text
+                                value={location.Postal_Code__c}>
+                            </lightning-formatted-text>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-m-top_small">
+                            <strong>Country: </strong>
+                            <lightning-formatted-text
+                                value={location.Country__c}>
+                            </lightning-formatted-text>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </template>
         </lightning-tab>
 
         <!-- ATTENDEES -->
