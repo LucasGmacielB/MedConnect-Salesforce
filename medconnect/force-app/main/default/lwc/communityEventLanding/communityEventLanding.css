@@ -1,0 +1,245 @@
+.page {
+  min-height: 100vh;
+  color: #163238;
+  background: #f7fbfb;
+  font-family:
+    "Inter",
+    "Salesforce Sans",
+    Arial,
+    sans-serif;
+}
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem clamp(1rem, 4vw, 4rem);
+  background: #ffffff;
+  border-bottom: 1px solid #d9e8e8;
+}
+
+.brand {
+  color: #0d6772;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+.tagline {
+  color: #48676d;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: right;
+}
+
+.hero {
+  display: flex;
+  align-items: flex-end;
+  min-height: 25rem;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4rem);
+  color: #ffffff;
+  background:
+    linear-gradient(90deg, rgba(11, 66, 72, 0.92), rgba(11, 66, 72, 0.6)),
+    url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80");
+  background-position: center;
+  background-size: cover;
+}
+
+.hero-content {
+  max-width: 48rem;
+}
+
+.eyebrow,
+.section-kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 44rem;
+  margin: 0;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.02;
+}
+
+.subtitle {
+  max-width: 42rem;
+  margin: 1.25rem 0 0;
+  color: #e5f4f4;
+  font-size: 1.15rem;
+  line-height: 1.7;
+}
+
+.events-section {
+  position: relative;
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+}
+
+.section-kicker {
+  color: #0d6772;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #17343a;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  font-weight: 800;
+}
+
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
+.event-card {
+  display: flex;
+  min-height: 22rem;
+  flex-direction: column;
+  padding: 1.35rem;
+  background: #ffffff;
+  border: 1px solid #d7e7e7;
+  border-radius: 0.5rem;
+  box-shadow: 0 1rem 2.5rem rgba(15, 62, 68, 0.08);
+}
+
+.card-topline {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.event-type,
+.event-status {
+  overflow-wrap: anywhere;
+}
+
+.event-type {
+  color: #0d6772;
+  text-transform: uppercase;
+}
+
+.event-status {
+  color: #6a4b00;
+}
+
+.event-card h3 {
+  margin: 0 0 1rem;
+  color: #132f35;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.event-date,
+.event-location,
+.event-description {
+  margin: 0 0 0.85rem;
+  color: #47636a;
+  line-height: 1.55;
+}
+
+.event-date,
+.event-location {
+  font-weight: 700;
+}
+
+.event-description {
+  flex: 1;
+}
+
+.card-action {
+  width: 100%;
+  min-height: 2.75rem;
+  margin-top: 1rem;
+  color: #ffffff;
+  font-weight: 800;
+  background: #0d6772;
+  border: 0;
+  border-radius: 0.35rem;
+  cursor: pointer;
+}
+
+.card-action:hover,
+.card-action:focus {
+  background: #094f58;
+}
+
+.empty-state {
+  padding: 2rem;
+  color: #48676d;
+  background: #ffffff;
+  border: 1px solid #d7e7e7;
+  border-radius: 0.5rem;
+  text-align: center;
+}
+
+.site-footer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.4fr;
+  gap: 2rem;
+  padding: 2rem clamp(1rem, 4vw, 4rem);
+  color: #dcebec;
+  background: #153338;
+}
+
+.site-footer h2,
+.site-footer h3,
+.site-footer p {
+  margin: 0 0 0.65rem;
+}
+
+.site-footer h2,
+.site-footer h3 {
+  color: #ffffff;
+}
+
+.site-footer a {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: #dcebec;
+  text-decoration: none;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+@media (max-width: 48rem) {
+  .site-header,
+  .site-footer {
+    grid-template-columns: 1fr;
+  }
+
+  .site-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tagline {
+    text-align: left;
+  }
+
+  .hero {
+    min-height: 29rem;
+  }
+
+  .site-footer {
+    display: grid;
+  }
+}
