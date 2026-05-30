@@ -1,7 +1,8 @@
 .page {
   min-height: 100vh;
-  color: #163238;
-  background: #f7fbfb;
+  width: 100%;
+  color: #0b2f5b;
+  background: #f6f9fb;
   font-family:
     "Inter",
     "Salesforce Sans",
@@ -14,209 +15,214 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.25rem clamp(1rem, 4vw, 4rem);
+  padding: 1.2rem clamp(1rem, 8vw, 7rem);
   background: #ffffff;
-  border-bottom: 1px solid #d9e8e8;
+  border-bottom: 1px solid #dfe8f0;
 }
 
 .brand {
-  color: #0d6772;
-  font-size: 1.35rem;
+  color: #004aad;
+  font-size: 1.15rem;
   font-weight: 800;
 }
 
+.brand span,
+.site-footer span,
+.hero h1 span {
+  color: #00b843;
+}
+
 .tagline {
-  color: #48676d;
-  font-size: 0.95rem;
-  font-weight: 600;
+  color: #2a4770;
+  font-size: 0.85rem;
+  font-weight: 500;
   text-align: right;
 }
 
 .hero {
-  display: flex;
-  align-items: flex-end;
-  min-height: 25rem;
-  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 4vw, 4rem);
-  color: #ffffff;
-  background:
-    linear-gradient(90deg, rgba(11, 66, 72, 0.92), rgba(11, 66, 72, 0.6)),
-    url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1800&q=80");
-  background-position: center;
-  background-size: cover;
+  padding: 3.8rem 1rem;
+  background: #eaf5f6;
+  border-bottom: 1px solid #dfe8f0;
+  text-align: center;
 }
 
 .hero-content {
-  max-width: 48rem;
-}
-
-.eyebrow,
-.section-kicker {
-  margin: 0 0 0.75rem;
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0;
-  text-transform: uppercase;
+  max-width: 58rem;
+  margin: 0 auto;
 }
 
 .hero h1 {
-  max-width: 44rem;
   margin: 0;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.02;
+  color: #004aad;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
 }
 
 .subtitle {
-  max-width: 42rem;
-  margin: 1.25rem 0 0;
-  color: #e5f4f4;
-  font-size: 1.15rem;
-  line-height: 1.7;
+  max-width: 48rem;
+  margin: 1rem auto 0;
+  color: #173b63;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .events-section {
-  position: relative;
-  max-width: 76rem;
+  max-width: 78rem;
   margin: 0 auto;
-  padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 4vw, 2rem);
+  padding: 2.8rem clamp(1rem, 6vw, 4rem) 7rem;
 }
 
 .section-heading {
-  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.2rem;
 }
 
-.section-kicker {
-  color: #0d6772;
+.section-border {
+  width: 3px;
+  height: 3.8rem;
+  background: #00b843;
 }
 
 .section-heading h2 {
   margin: 0;
-  color: #17343a;
-  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  color: #004aad;
+  font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 800;
+}
+
+.section-heading p {
+  margin: 0.4rem 0 0;
+  color: #45627f;
+  font-size: 0.8rem;
 }
 
 .event-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
-  gap: 1.25rem;
+  gap: 2rem;
 }
 
 .event-card {
-  display: flex;
-  min-height: 22rem;
-  flex-direction: column;
-  padding: 1.35rem;
+  min-height: 15rem;
+  padding: 1.5rem;
   background: #ffffff;
-  border: 1px solid #d7e7e7;
-  border-radius: 0.5rem;
-  box-shadow: 0 1rem 2.5rem rgba(15, 62, 68, 0.08);
-}
-
-.card-topline {
-  display: flex;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 1.25rem;
-  font-size: 0.75rem;
-  font-weight: 800;
-}
-
-.event-type,
-.event-status {
-  overflow-wrap: anywhere;
+  border: 1px solid #d6e0ea;
+  border-radius: 0.45rem;
+  box-shadow: 0 0.25rem 0.8rem rgba(18, 48, 89, 0.06);
 }
 
 .event-type {
-  color: #0d6772;
-  text-transform: uppercase;
-}
-
-.event-status {
-  color: #6a4b00;
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35rem 0.6rem;
+  color: #00a33d;
+  background: #e5f9eb;
+  border-radius: 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .event-card h3 {
-  margin: 0 0 1rem;
-  color: #132f35;
-  font-size: 1.25rem;
+  margin: 0 0 0.8rem;
+  color: #004aad;
+  font-size: 1.15rem;
   font-weight: 800;
-  line-height: 1.25;
-}
-
-.event-date,
-.event-location,
-.event-description {
-  margin: 0 0 0.85rem;
-  color: #47636a;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 
 .event-date,
 .event-location {
-  font-weight: 700;
+  margin: 0 0 0.45rem;
+  color: #173b63;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.divider {
+  margin: 1.1rem 0;
+  border-top: 1px solid #dfe8f0;
 }
 
 .event-description {
-  flex: 1;
+  margin: 0;
+  color: #45627f;
+  font-size: 0.85rem;
+  line-height: 1.7;
 }
 
 .card-action {
-  width: 100%;
-  min-height: 2.75rem;
   margin-top: 1rem;
+  padding: 0.65rem 0.9rem;
   color: #ffffff;
-  font-weight: 800;
-  background: #0d6772;
+  font-weight: 700;
+  background: #004aad;
   border: 0;
-  border-radius: 0.35rem;
+  border-radius: 0.25rem;
   cursor: pointer;
 }
 
 .card-action:hover,
 .card-action:focus {
-  background: #094f58;
+  background: #00377f;
 }
 
 .empty-state {
-  padding: 2rem;
-  color: #48676d;
+  padding: 1.6rem;
+  color: #45627f;
   background: #ffffff;
-  border: 1px solid #d7e7e7;
-  border-radius: 0.5rem;
+  border: 1px solid #d6e0ea;
+  border-radius: 0.45rem;
   text-align: center;
 }
 
 .site-footer {
   display: grid;
   grid-template-columns: 2fr 1fr 1.4fr;
-  gap: 2rem;
-  padding: 2rem clamp(1rem, 4vw, 4rem);
-  color: #dcebec;
-  background: #153338;
+  gap: 3rem;
+  padding: 2.5rem clamp(1rem, 8vw, 7rem);
+  color: #38597a;
+  background: #ffffff;
+  border-top: 1px solid #dfe8f0;
 }
 
 .site-footer h2,
 .site-footer h3,
 .site-footer p {
-  margin: 0 0 0.65rem;
+  margin: 0 0 0.7rem;
 }
 
 .site-footer h2,
 .site-footer h3 {
-  color: #ffffff;
+  color: #004aad;
+}
+
+.site-footer h2 {
+  font-size: 1.1rem;
+}
+
+.site-footer h3 {
+  font-size: 0.95rem;
+}
+
+.site-footer p,
+.site-footer a {
+  color: #38597a;
+  font-size: 0.82rem;
+  line-height: 1.5;
 }
 
 .site-footer a {
   display: block;
   margin-bottom: 0.45rem;
-  color: #dcebec;
   text-decoration: none;
 }
 
 .site-footer a:hover,
 .site-footer a:focus {
-  color: #ffffff;
+  color: #004aad;
   text-decoration: underline;
 }
 
@@ -233,10 +239,6 @@
 
   .tagline {
     text-align: left;
-  }
-
-  .hero {
-    min-height: 29rem;
   }
 
   .site-footer {

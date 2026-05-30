@@ -1,25 +1,27 @@
 <template>
   <main class="page">
     <header class="site-header">
-      <div class="brand">MedConnect</div>
+      <div class="brand">Med<span>Connect</span></div>
       <div class="tagline">Healthcare Events and Conferences</div>
     </header>
 
     <section class="hero">
       <div class="hero-content">
-        <p class="eyebrow">Agenda publica MedConnect</p>
-        <h1>Central de Informacoes Cientificas</h1>
+        <h1>Central de <span>Informações</span> Científicas</h1>
         <p class="subtitle">
-          Consulte o cronograma atualizado de congressos, simposios e paineis
-          medicos do setor de saude.
+          Consulte o cronograma atualizado de congressos, simpósios e painéis
+          médicos do setor de saúde.
         </p>
       </div>
     </section>
 
     <section class="events-section" aria-labelledby="upcoming-events-title">
       <div class="section-heading">
-        <p class="section-kicker">Calendario</p>
-        <h2 id="upcoming-events-title">Proximos Eventos Programados</h2>
+        <div class="section-border"></div>
+        <div>
+          <h2 id="upcoming-events-title">Próximos Eventos Programados</h2>
+          <p>Dados atualizados para o calendário vigente</p>
+        </div>
       </div>
 
       <template if:true={loading}>
@@ -34,14 +36,15 @@
           <div class="event-grid">
             <template for:each={events} for:item="event">
               <article key={event.eventId} class="event-card">
-                <div class="card-topline">
-                  <span class="event-type">{event.eventType}</span>
-                  <span class="event-status">{event.status}</span>
-                </div>
+                <span class="event-type">{event.eventType}</span>
 
                 <h3>{event.eventName}</h3>
-                <p class="event-date">{event.periodLabel}</p>
-                <p class="event-location">{event.locationLabel}</p>
+
+                <p class="event-date">🗓️ {event.periodLabel}</p>
+                <p class="event-location">📍 {event.locationLabel}</p>
+
+                <div class="divider"></div>
+
                 <p class="event-description">{event.description}</p>
 
                 <button
@@ -67,19 +70,25 @@
 
     <footer class="site-footer">
       <div>
-        <h2>MedConnect</h2>
-        <p>Eventos cientificos para profissionais e organizacoes de saude.</p>
+        <h2>Med<span>Connect</span></h2>
+        <p>
+          Sua plataforma central de atualização científica, conectando
+          profissionais de saúde aos maiores eventos e congressos médicos do país.
+        </p>
       </div>
-      <nav aria-label="Navegacao">
-        <h3>Navegacao</h3>
-        <a href="/">Inicio</a>
-        <a href="/events">Eventos</a>
-        <a href="/support">Suporte</a>
+
+      <nav aria-label="Navegação">
+        <h3>Navegação</h3>
+        <a href="/">• Início</a>
+        <a href="/events">• Calendário de Eventos</a>
+        <a href="/support">• Suporte</a>
       </nav>
+
       <div>
         <h3>Contato &amp; Ajuda</h3>
-        <p>events@medconnect.example</p>
-        <p>Atendimento para participantes e organizadores.</p>
+        <p>• Central de Ajuda</p>
+        <p>• Fale Conosco</p>
+        <p>• Termos de Uso</p>
       </div>
     </footer>
   </main>
