@@ -21,6 +21,9 @@ O **MedConnect** é uma solução robusta para a gestão de eventos médicos des
 ### Processamento em Lote (Apex Batch)
 *   **MedicalEventPurgeBatch:** Job assíncrono projetado para manutenção da base de dados. Ele remove automaticamente eventos com mais de 2 meses de antiguidade que não foram concluídos (`Live__c = false`), otimizando o armazenamento da org.
 
+### Agendamento (Apex Scheduler)
+*   **MedicalEventPurgeScheduler:** Classe responsável por automatizar e orquestrar a execução do `MedicalEventPurgeBatch`. Pode ser configurada via CRON (ex: diariamente à meia-noite) para garantir a limpeza proativa de dados antigos na organização sem necessidade de disparos manuais.
+
 ### Interface do Usuário (LWC)
 *   **eventDetails:** Componente Lightning moderno que consolida todas as informações do evento em uma única visualização. Utiliza abas para separar Detalhes, Palestrantes, Participantes e Localização, melhorando a experiência do usuário (UX).
 
