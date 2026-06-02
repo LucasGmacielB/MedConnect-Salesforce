@@ -1,7 +1,8 @@
 trigger EventAttendeeTrigger on Event_Attendee__c(
   before insert,
   before update,
-  after insert
+  after insert,
+  after update
 ) {
   if (Trigger.isBefore) {
     EventAttendeeTriggerHandler.preventDuplicateAttendeeRegistration(
@@ -12,5 +13,9 @@ trigger EventAttendeeTrigger on Event_Attendee__c(
 
   if (Trigger.isAfter && Trigger.isInsert) {
     EventAttendeeTriggerHandler.sendConfirmationEmails(Trigger.new);
+  }
+
+  if (Trigger.isAfter && Trigger.isUpdate) {
+    EventAttendeeTriggerHandler.handleCancellation(Trigger.new, Trigger.oldMap);
   }
 }

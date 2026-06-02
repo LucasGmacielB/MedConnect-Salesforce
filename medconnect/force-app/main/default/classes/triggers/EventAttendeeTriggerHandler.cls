@@ -133,4 +133,62 @@ public class EventAttendeeTriggerHandler {
       );
     }
   }
+
+  public static void handleCancellation(
+    List<Event_Attendee__c> newRecords,
+    Map<Id, Event_Attendee__c> oldMap
+  ) {
+    List<Event_Attendee__c> cancelledRecords = new List<Event_Attendee__c>();
+
+    for (Event_Attendee__c record : newRecords) {
+      Event_Attendee__c oldRecord = oldMap.get(record.Id);
+
+      if (
+        record.Status__c == 'Cancelled' &&
+        oldRecord.Status__c != 'Cancelled'
+      ) {
+        cancelledRecords.add(record);
+      }
+    }
+
+    if (cancelledRecords.isEmpty()) {
+      return;
+    }
+
+    try {
+      List<Event_Attendee__c> registrations = [
+        SELECT Id, Attendee__r.Name, Attendee__r.Email__c,
+              Medical_Event__r.Event_Name__c
+        FROM Event_Attendee__c
+        WHERE Id IN :cancelledRecords
+      ];
+
+      List<Messaging.SingleEmailMessage> emails = new List<Messaging.SingleEmailMessage>();
+
+      for (Event_Attendee__c registration : registrations) {
+        if (String.isBlank(registration.Attendee__r.Email__c)) continue;
+
+        Messaging.SingleEmailMessage email = new Messaging.SingleEmailMessage();
+        email.setToAddresses(new List<String>{ registration.Attendee__r.Email__c });
+        email.setSubject('Event Registration Cancelled');
+        email.setPlainTextBody(
+          'Hello ' + registration.Attendee__r.Name +
+          ', your registration for the event "' +
+          registration.Medical_Event__r.Event_Name__c +
+          '" has been cancelled.'
+        );
+        email.setSaveAsActivity(false);
+        emails.add(email);
+      }
+
+      if (!emails.isEmpty()) Messaging.sendEmail(emails, false);
+
+    } catch (Exception e) {
+      ErrorLogService.logError(
+        System.now(),
+        e.getMessage() + ' - ' + e.getStackTraceString(),
+        'EventAttendeeCancellation'
+      );
+    }
+  }
 }

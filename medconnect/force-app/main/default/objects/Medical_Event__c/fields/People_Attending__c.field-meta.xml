@@ -4,6 +4,11 @@
     <label>People Attending</label>
     <summaryForeignKey>Event_Attendee__c.Medical_Event__c</summaryForeignKey>
     <summaryOperation>count</summaryOperation>
+    <summaryFilterItems>
+        <field>Event_Attendee__c.Status__c</field>
+        <operation>equals</operation>
+        <value>Registered</value>
+    </summaryFilterItems>
     <trackTrending>false</trackTrending>
     <type>Summary</type>
 </CustomField>
