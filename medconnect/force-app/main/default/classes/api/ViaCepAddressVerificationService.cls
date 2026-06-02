@@ -28,8 +28,7 @@ public with sharing class ViaCepAddressVerificationService {
         }
 
         return fieldMatches(location.City__c, String.valueOf(payload.get('localidade'))) &&
-            fieldMatches(location.State__c, String.valueOf(payload.get('uf'))) &&
-            streetMatches(location.Street__c, String.valueOf(payload.get('logradouro')));
+                fieldMatches(location.State__c, String.valueOf(payload.get('uf')));
     }
 
     private static String normalizeCep(String postalCode) {
