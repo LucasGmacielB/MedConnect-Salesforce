@@ -1,0 +1,174 @@
+<template>
+  <main class="page">
+    <template if:true={isLoading}>
+      <div class="loading">
+        <lightning-spinner
+          alternative-text="Carregando detalhes do evento"
+          size="medium"
+        ></lightning-spinner>
+      </div>
+    </template>
+
+    <template if:false={isLoading}>
+      <template if:true={errorMessage}>
+        <section class="message error" role="alert">{errorMessage}</section>
+      </template>
+
+      <template if:true={eventDetails}>
+        <section class="hero">
+          <div class="eyebrow">MedConnect</div>
+          <div class="badge-row">
+            <span class="badge primary">{eventTypeLabel}</span>
+            <span class="badge success">{statusLabel}</span>
+          </div>
+          <h1>{eventDetails.eventName}</h1>
+          <p class="period">{periodLabel}</p>
+        </section>
+
+        <section class="content">
+          <article class="details-card">
+            <div class="section-title">
+              <span></span>
+              <h2>Detalhes do evento</h2>
+            </div>
+
+            <dl class="details-grid">
+              <div>
+                <dt>Organizador</dt>
+                <dd>{organizerLabel}</dd>
+              </div>
+              <div>
+                <dt>Local</dt>
+                <dd>{locationLabel}</dd>
+              </div>
+              <div>
+                <dt>Endereco</dt>
+                <dd>{eventDetails.addressText}</dd>
+              </div>
+              <div>
+                <dt>Local verificado</dt>
+                <dd>{verifiedLabel}</dd>
+              </div>
+              <div>
+                <dt>Vagas restantes</dt>
+                <dd class="seats">{seatsLabel}</dd>
+              </div>
+              <div>
+                <dt>Total de vagas</dt>
+                <dd>{maxSeatsLabel}</dd>
+              </div>
+            </dl>
+
+            <button class="register-button" type="button" onclick={showForm}>
+              Inscrever-se
+            </button>
+          </article>
+
+          <aside class="registration-panel">
+            <template if:false={showRegistrationForm}>
+              <div class="panel-placeholder">
+                <h2>Inscricao</h2>
+                <p>Preencha seus dados para confirmar a participacao no evento.</p>
+              </div>
+            </template>
+
+            <template if:true={showRegistrationForm}>
+              <form onsubmit={handleSubmit}>
+                <h2>Inscrever-se</h2>
+
+                <label>
+                  Nome completo
+                  <input
+                    name="name"
+                    type="text"
+                    value={form.name}
+                    oninput={handleInputChange}
+                    required
+                  />
+                </label>
+
+                <label>
+                  E-mail
+                  <input
+                    name="email"
+                    type="email"
+                    value={form.email}
+                    oninput={handleInputChange}
+                    required
+                  />
+                </label>
+
+                <label>
+                  Telefone
+                  <input
+                    name="phone"
+                    type="tel"
+                    value={form.phone}
+                    oninput={handleInputChange}
+                  />
+                </label>
+
+                <label>
+                  Empresa/Instituicao
+                  <input
+                    name="companyInstitutionName"
+                    type="text"
+                    value={form.companyInstitutionName}
+                    oninput={handleInputChange}
+                  />
+                </label>
+
+                <template if:true={formError}>
+                  <div class="message error" role="alert">{formError}</div>
+                </template>
+
+                <template if:true={successMessage}>
+                  <div class="message success" role="status">{successMessage}</div>
+                </template>
+
+                <button
+                  class="submit-button"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
+                  <template if:true={isSubmitting}>Enviando...</template>
+                  <template if:false={isSubmitting}>Confirmar inscricao</template>
+                </button>
+              </form>
+            </template>
+          </aside>
+        </section>
+
+        <section class="speakers-section">
+          <div class="section-title">
+            <span></span>
+            <h2>Palestrantes</h2>
+          </div>
+
+          <template if:true={hasSpeakers}>
+            <div class="speaker-grid">
+              <template for:each={eventDetails.speakers} for:item="speaker">
+                <article key={speaker.speakerId} class="speaker-card">
+                  <h3>{speaker.name}</h3>
+                  <p class="specialization">{speaker.specialization}</p>
+                  <p>{speaker.aboutMe}</p>
+                  <template if:true={speaker.profileUrl}>
+                    <a href={speaker.profileUrl} target="_blank" rel="noreferrer">
+                      Perfil profissional
+                    </a>
+                  </template>
+                </article>
+              </template>
+            </div>
+          </template>
+
+          <template if:false={hasSpeakers}>
+            <div class="empty-state">
+              Palestrantes serao divulgados em breve.
+            </div>
+          </template>
+        </section>
+      </template>
+    </template>
+  </main>
+</template>

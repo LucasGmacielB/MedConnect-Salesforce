@@ -43,7 +43,7 @@ describe("c-community-event-landing", () => {
     await flushPromises();
 
     expect(element.shadowRoot.textContent).toContain(
-      "Central de Informacoes Cientificas"
+      "Central de Informações Científicas"
     );
     expect(element.shadowRoot.textContent).toContain(
       "Congresso de Cardiologia"

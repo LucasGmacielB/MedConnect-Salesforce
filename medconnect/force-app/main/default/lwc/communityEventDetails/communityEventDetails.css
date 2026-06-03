@@ -1,0 +1,245 @@
+.page {
+  min-height: 100vh;
+  background: #f4f8fc;
+  color: #1f2a37;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.loading {
+  min-height: 18rem;
+  position: relative;
+}
+
+.hero {
+  background: #004aad;
+  color: #ffffff;
+  padding: 3rem clamp(1rem, 5vw, 5rem);
+}
+
+.eyebrow {
+  color: #b7f3c9;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.badge {
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+}
+
+.badge.primary {
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.badge.success {
+  background: #00b843;
+  color: #052e16;
+}
+
+h1,
+h2,
+h3,
+p,
+dl {
+  margin: 0;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.1;
+  max-width: 56rem;
+}
+
+.period {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+}
+
+.content,
+.speakers-section {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem clamp(1rem, 5vw, 5rem);
+}
+
+.content {
+  grid-template-columns: minmax(0, 1.5fr) minmax(20rem, 0.8fr);
+  align-items: start;
+}
+
+.details-card,
+.registration-panel,
+.speaker-card,
+.empty-state,
+.message {
+  background: #ffffff;
+  border: 1px solid #d8e3ef;
+  border-radius: 8px;
+}
+
+.details-card,
+.registration-panel,
+.speaker-card {
+  padding: 1.25rem;
+}
+
+.section-title {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.section-title span {
+  background: #00b843;
+  border-radius: 999px;
+  display: inline-block;
+  height: 2rem;
+  width: 0.35rem;
+}
+
+.section-title h2,
+.registration-panel h2 {
+  color: #004aad;
+  font-size: 1.25rem;
+}
+
+.details-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+dt {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+dd {
+  font-size: 1rem;
+  margin-top: 0.25rem;
+}
+
+.seats {
+  color: #007a2d;
+  font-weight: 700;
+}
+
+.register-button,
+.submit-button {
+  background: #00b843;
+  border: 0;
+  border-radius: 6px;
+  color: #052e16;
+  cursor: pointer;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.panel-placeholder {
+  color: #475569;
+}
+
+.panel-placeholder p {
+  margin-top: 0.5rem;
+}
+
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+label {
+  color: #334155;
+  display: grid;
+  font-size: 0.875rem;
+  font-weight: 700;
+  gap: 0.35rem;
+}
+
+input {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font: inherit;
+  min-height: 2.5rem;
+  padding: 0 0.75rem;
+}
+
+input:focus {
+  border-color: #004aad;
+  box-shadow: 0 0 0 2px rgba(0, 74, 173, 0.16);
+  outline: none;
+}
+
+.message {
+  padding: 0.9rem 1rem;
+}
+
+.message.error {
+  background: #fff4f4;
+  border-color: #ffc7c7;
+  color: #9f1d1d;
+}
+
+.message.success {
+  background: #effdf4;
+  border-color: #b7f3c9;
+  color: #006b28;
+}
+
+.speaker-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.speaker-card h3 {
+  color: #004aad;
+  font-size: 1.05rem;
+}
+
+.specialization {
+  color: #00b843;
+  font-weight: 700;
+  margin: 0.35rem 0 0.75rem;
+}
+
+.speaker-card a {
+  color: #004aad;
+  display: inline-block;
+  font-weight: 700;
+  margin-top: 0.75rem;
+}
+
+.empty-state {
+  color: #475569;
+  padding: 1.25rem;
+}
+
+@media (max-width: 760px) {
+  .content,
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}

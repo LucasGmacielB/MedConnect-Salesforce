@@ -74,11 +74,9 @@ export default class CommunityEventLanding extends NavigationMixin(
     }
 
     this[NavigationMixin.Navigate]({
-      type: "standard__recordPage",
+      type: "standard__webPage",
       attributes: {
-        recordId,
-        objectApiName: "Medical_Event__c",
-        actionName: "view"
+        url: `/event-detail?recordId=${recordId}`
       }
     });
   }
