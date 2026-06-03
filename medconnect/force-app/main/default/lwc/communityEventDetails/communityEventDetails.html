@@ -42,7 +42,7 @@
                 <dd>{locationLabel}</dd>
               </div>
               <div>
-                <dt>Endereco</dt>
+                <dt>Endereço</dt>
                 <dd>{eventDetails.addressText}</dd>
               </div>
               <div>
@@ -67,7 +67,7 @@
           <aside class="registration-panel">
             <template if:false={showRegistrationForm}>
               <div class="panel-placeholder">
-                <h2>Inscricao</h2>
+                <h2>Inscrição</h2>
                 <p>Preencha seus dados para confirmar a participacao no evento.</p>
               </div>
             </template>
@@ -109,7 +109,7 @@
                 </label>
 
                 <label>
-                  Empresa/Instituicao
+                  Empresa/Instituição
                   <input
                     name="companyInstitutionName"
                     type="text"
@@ -132,7 +132,7 @@
                   disabled={isSubmitting}
                 >
                   <template if:true={isSubmitting}>Enviando...</template>
-                  <template if:false={isSubmitting}>Confirmar inscricao</template>
+                  <template if:false={isSubmitting}>Confirmar inscrição</template>
                 </button>
               </form>
             </template>
